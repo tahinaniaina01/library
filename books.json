@@ -1,0 +1,32 @@
+{
+  "livres": [
+    {
+      "titre": "1984",
+      "auteurs": ["George Orwell"],
+      "isbn": "978-2-07-036822-8",
+      "image": "/assets/images/bd1.jpg",
+      "editeur": "Gallimard",
+      "datePublication": "1949",
+      "genre": "Dystopie, Science-fiction",
+      "resume": "Un homme lutte contre un régime totalitaire oppressif dans un monde dystopique.",
+      "langue": "Français",
+      "nombrePages": 368,
+      "disponibilite": false,
+      "etat": "Endommagé"
+    },
+    {
+      "titre": "Le Meilleur des Mondes",
+      "auteurs": ["Aldous Huxley"],
+      "isbn": "978-2-07-036845-7",
+      "image": "/assets/images/bd2.jpg",
+      "editeur": "Plon",
+      "datePublication": "1932",
+      "genre": "Dystopie, Science-fiction",
+      "resume": "Une vision cauchemardesque d'un futur où les êtres humains sont manipulés.",
+      "langue": "Français",
+      "nombrePages": 288,
+      "disponibilite": true,
+      "etat": "Neuf"
+    }
+  ]
+}
