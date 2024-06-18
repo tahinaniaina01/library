@@ -65,35 +65,35 @@
 const fileInput = document.getElementById("file");
 
 // Écoute de l'événement de changement sur le champ de fichier
-fileInput.addEventListener("change", function (event) {
-  // Récupérer le fichier sélectionné
-  const file = event.target.files[0];
-
-  // Vérifier si un fichier a été sélectionné
-  if (file) {
-    // Créer un objet URL à partir du fichier sélectionné
-    const imageURL = URL.createObjectURL(file);
-
-    // Sélectionner l'élément div où afficher l'image
-    const imagePreviewDiv = document.getElementById("imagePreview");
-
-    // Créer un élément img
-    const imgElement = document.createElement("img");
-    imgElement.src = imageURL;
-    imgElement.alt = "Image du livre"; // Ajoutez une description alt si nécessaire
-
-    // Effacer le contenu précédent de la div
-    imagePreviewDiv.innerHTML = "";
-
-    // Ajouter l'élément img à la div
-    imagePreviewDiv.appendChild(imgElement);
-
-    // Libérer l'URL de l'objet après utilisation pour éviter les fuites mémoire
-    URL.revokeObjectURL(imageURL);
-  }
-});
 
 document.addEventListener("DOMContentLoaded", () => {
+  fileInput.addEventListener("change", function (event) {
+    // Récupérer le fichier sélectionné
+    const file = event.target.files[0];
+
+    // Vérifier si un fichier a été sélectionné
+    if (file) {
+      // Créer un objet URL à partir du fichier sélectionné
+      const imageURL = URL.createObjectURL(file);
+
+      // Sélectionner l'élément div où afficher l'image
+      const imagePreviewDiv = document.getElementById("imagePreview");
+
+      // Créer un élément img
+      const imgElement = document.createElement("img");
+      imgElement.src = imageURL;
+      imgElement.alt = "Image du livre"; // Ajoutez une description alt si nécessaire
+
+      // Effacer le contenu précédent de la div
+      imagePreviewDiv.innerHTML = "";
+
+      // Ajouter l'élément img à la div
+      imagePreviewDiv.appendChild(imgElement);
+
+      // Libérer l'URL de l'objet après utilisation pour éviter les fuites mémoire
+      URL.revokeObjectURL(imageURL);
+    }
+  });
   // Fonction pour charger les livres depuis un fichier JSON initial
   fetch("books.json")
     .then((response) => response.json())
@@ -109,6 +109,7 @@ document.addEventListener("DOMContentLoaded", () => {
       event.preventDefault();
 
       const formData = new FormData(event.target);
+      console.log(formData.get("auteurs"));
       const newBook = {
         titre: formData.get("titre"),
         auteurs: formData

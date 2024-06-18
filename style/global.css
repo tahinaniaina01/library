@@ -37,9 +37,7 @@ footer {
   padding: 1em 0;
   background-color: #333;
   color: #fff;
-  position: fixed;
   width: 100%;
-  bottom: 0;
 }
 
 @media (min-width: 640px) {
