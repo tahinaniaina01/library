@@ -140,6 +140,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     books.forEach((book) => {
       const bookItem = document.createElement("div");
+      const a = document.createElement("a");
+      a.href = `./details.html?${JSON.stringify(book)}`;
       bookItem.className = "book-item";
 
       const bookImage = document.createElement("img");
@@ -155,8 +157,9 @@ document.addEventListener("DOMContentLoaded", () => {
       bookItem.appendChild(bookImage);
       bookItem.appendChild(bookTitle);
       bookItem.appendChild(bookAuthor);
+      a.appendChild(bookItem);
 
-      bookList.appendChild(bookItem);
+      bookList.appendChild(a);
     });
   }
 
