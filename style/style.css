@@ -94,6 +94,16 @@ a {
   color: #555;
 }
 
+.delete-book {
+  border: none;
+  background-color: #f77;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  margin: 1rem 0.25rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
 #submit {
   margin-bottom: 5rem;
   border: none;

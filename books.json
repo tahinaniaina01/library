@@ -1,6 +1,7 @@
 {
   "livres": [
     {
+      "id": 0,
       "titre": "1984",
       "auteurs": ["George Orwell"],
       "isbn": "978-2-07-036822-8",
@@ -15,6 +16,7 @@
       "etat": "Endommagé"
     },
     {
+      "id": 1,
       "titre": "Le Meilleur des Mondes",
       "auteurs": ["Aldous Huxley"],
       "isbn": "978-2-07-036845-7",

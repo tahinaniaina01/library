@@ -1,66 +1,3 @@
-// const books = [
-//   {
-//     titre: "1984",
-//     auteurs: ["George Orwell"],
-//     isbn: "978-2-07-036822-8",
-//     image: "/assets/images/bd1.jpg",
-//     editeur: "Gallimard",
-//     datePublication: "1949",
-//     genre: "Dystopie, Science-fiction",
-//     resume:
-//       "Un homme lutte contre un régime totalitaire oppressif dans un monde dystopique.",
-//     langue: "Français",
-//     nombrePages: 368,
-//     disponibilite: false,
-//     etat: "Endommagé",
-//   },
-//   {
-//     titre: "Le Meilleur des Mondes",
-//     auteurs: ["Aldous Huxley"],
-//     isbn: "978-2-07-036845-7",
-//     image: "/assets/images/bd2.jpg",
-//     editeur: "Plon",
-//     datePublication: "1932",
-//     genre: "Dystopie, Science-fiction",
-//     resume:
-//       "Une vision cauchemardesque d'un futur où les êtres humains sont manipulés.",
-//     langue: "Français",
-//     nombrePages: 288,
-//     disponibilite: true,
-//     etat: "Neuf",
-//   },
-// ];
-
-// function displayBooks() {
-//   const bookList = document.getElementById("book-list");
-
-//   books.forEach((book) => {
-//     const link = document.createElement("a");
-//     const bookItem = document.createElement("div");
-//     bookItem.className = "book-item";
-
-//     const bookImage = document.createElement("img");
-//     bookImage.src = book.image;
-//     bookImage.alt = `Couverture de ${book.titre}`;
-
-//     const bookTitle = document.createElement("h3");
-//     bookTitle.textContent = book.titre;
-
-//     const bookAuthor = document.createElement("p");
-//     bookAuthor.textContent = `Par ${book.auteurs.join(", ")}`;
-
-//     bookItem.appendChild(bookImage);
-//     bookItem.appendChild(bookTitle);
-//     bookItem.appendChild(bookAuthor);
-//     link.href = `./details.html?${JSON.stringify(book)}`;
-
-//     link.appendChild(bookItem);
-//     bookList.appendChild(link);
-//   });
-// }
-
-// document.addEventListener("DOMContentLoaded", displayBooks);
-
 // Sélection de l'élément input de type fichier
 const fileInput = document.getElementById("file");
 
@@ -128,7 +65,8 @@ document.addEventListener("DOMContentLoaded", () => {
         etat: formData.get("etat"),
       };
 
-      books.push(newBook);
+      books.push({ ...newBook, id: books.length });
+      console.log(books);
       updateJSONFile();
       displayBooks();
       event.target.reset(); // Reset the form
@@ -140,26 +78,41 @@ document.addEventListener("DOMContentLoaded", () => {
 
     books.forEach((book) => {
       const bookItem = document.createElement("div");
-      const a = document.createElement("a");
-      a.href = `./details.html?${JSON.stringify(book)}`;
+      bookItem.id = book.id;
       bookItem.className = "book-item";
+
+      const a1 = document.createElement("a");
+      a1.href = `./details.html?${JSON.stringify(book)}`;
+
+      const a2 = document.createElement("a");
+      a2.href = `./details.html?${JSON.stringify(book)}`;
 
       const bookImage = document.createElement("img");
       bookImage.src = book.image;
       bookImage.alt = `Couverture de ${book.titre}`;
+      a1.appendChild(bookImage);
 
       const bookTitle = document.createElement("h3");
       bookTitle.textContent = book.titre;
+      a2.appendChild(bookTitle);
 
       const bookAuthor = document.createElement("p");
       bookAuthor.textContent = `Par ${book.auteurs.join(", ")}`;
 
-      bookItem.appendChild(bookImage);
-      bookItem.appendChild(bookTitle);
-      bookItem.appendChild(bookAuthor);
-      a.appendChild(bookItem);
+      const deleteButton = document.createElement("button");
+      deleteButton.className = `delete-book`;
+      deleteButton.textContent = "supprimer";
 
-      bookList.appendChild(a);
+      bookItem.appendChild(a1);
+      bookItem.appendChild(a2);
+      bookItem.appendChild(bookAuthor);
+      bookItem.appendChild(deleteButton);
+
+      bookList.appendChild(bookItem);
+      deleteButton.addEventListener("click", () => {
+        books.filter((item) => item.id !== book.id);
+        document.getElementById(book.id).remove();
+      });
     });
   }
 
